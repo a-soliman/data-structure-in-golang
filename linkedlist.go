@@ -77,11 +77,37 @@ func (ll *LinkedList) Insert(i int, value Item) {
 	ll.size++
 }
 
+// RemoveAt removes the node at a given index
+func (ll *LinkedList) RemoveAt(i int) {
+	if i < 1 || i > ll.size {
+		return
+	}
+	if i == 1 {
+		ll.head = ll.head.next
+	} else {
+		currentNode := ll.head.next
+		prevNode := ll.head
+		nextNode := currentNode.next
+		step := 2
+		for {
+			if i == step {
+				break
+			}
+			prevNode = currentNode
+			currentNode = currentNode.next
+			nextNode = currentNode.next
+			step++
+		}
+		prevNode.next = nextNode
+	}
+	ll.size--
+}
+
 func main() {
 	ll := LinkedList{}
 	ll.Append(10)
 	ll.Append(12)
 	ll.Insert(2, 5)
-	//fmt.Print(ll.head.next)
+	ll.RemoveAt(4)
 	fmt.Print(ll.ListValues())
 }
