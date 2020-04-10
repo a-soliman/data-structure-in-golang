@@ -21,6 +21,20 @@ type LinkedList struct {
 	size int
 }
 
+// ListValues returns a slice contains the linkedlist values
+func (ll *LinkedList) ListValues() []Item {
+	var values []Item
+	currentNode := ll.head
+	for {
+		values = append(values, currentNode.value)
+		if currentNode.next == nil {
+			break
+		}
+		currentNode = currentNode.next
+	}
+	return values
+}
+
 // Append appends a new node to linked list
 func (ll *LinkedList) Append(value Item) {
 	newNode := Node{value, nil}
@@ -68,6 +82,6 @@ func main() {
 	ll.Append(10)
 	ll.Append(12)
 	ll.Insert(2, 5)
-	fmt.Print(ll.head.next)
-
+	//fmt.Print(ll.head.next)
+	fmt.Print(ll.ListValues())
 }
