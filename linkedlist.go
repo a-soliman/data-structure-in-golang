@@ -125,6 +125,11 @@ func (ll *LinkedList) IndexOf(item Item) int {
 	return currentIdx
 }
 
+// IsEmpty return boolean indicating of a linkedList is empty
+func (ll *LinkedList) IsEmpty() bool {
+	return ll.size == 0
+}
+
 func main() {
 	ll := LinkedList{}
 	ll.Append(10)
@@ -133,4 +138,5 @@ func main() {
 	ll.RemoveAt(4)
 	// fmt.Print(ll.ListValues())
 	fmt.Print(ll.IndexOf(12))
+	fmt.Print(ll.IsEmpty())
 }
