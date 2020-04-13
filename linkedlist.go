@@ -103,11 +103,34 @@ func (ll *LinkedList) RemoveAt(i int) {
 	ll.size--
 }
 
+// IndexOf returns the position of the item
+func (ll *LinkedList) IndexOf(item Item) int {
+	if ll.size < 1 {
+		return 0
+	}
+	currentNode := ll.head
+	currentIdx := 1
+
+	for {
+		if currentNode == nil {
+			currentIdx = 0
+			break
+		}
+		if item == currentNode.value {
+			break
+		}
+		currentNode = currentNode.next
+		currentIdx++
+	}
+	return currentIdx
+}
+
 func main() {
 	ll := LinkedList{}
 	ll.Append(10)
 	ll.Append(12)
 	ll.Insert(2, 5)
 	ll.RemoveAt(4)
-	fmt.Print(ll.ListValues())
+	// fmt.Print(ll.ListValues())
+	fmt.Print(ll.IndexOf(12))
 }
