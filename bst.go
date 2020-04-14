@@ -36,9 +36,29 @@ func (bst *BST) Insert(value int) {
 	}
 }
 
+// Search returns a node that matches a given value
+func (bst *BST) Search(value int) *BST {
+	if value == bst.value {
+		return bst
+	}
+	if value < bst.value {
+		if bst.left == nil {
+			return nil
+		}
+		return bst.left.Search(value)
+	}
+	if value > bst.value {
+		if bst.right == nil {
+			return nil
+		}
+		return bst.right.Search(value)
+	}
+	return nil
+}
+
 func main() {
 	bst := BST{10, nil, nil}
 	bst.Insert(9)
 	bst.Insert(8)
-	fmt.Print(bst.left)
+	fmt.Print(bst.Search(8))
 }
