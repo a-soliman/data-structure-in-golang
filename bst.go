@@ -11,12 +11,34 @@ type Item generic.Type
 
 // BST type
 type BST struct {
-	value Item
+	value int
 	left  *BST
 	right *BST
 }
 
+// Insert insert a new bst node
+func (bst *BST) Insert(value int) {
+	if value < bst.value {
+		if bst.left == nil {
+			newNode := BST{value, nil, nil}
+			bst.left = &newNode
+		} else {
+			bst.left.Insert(value)
+		}
+	} else {
+		if bst.right == nil {
+			newNode := BST{value, nil, nil}
+			bst.left = &newNode
+		} else {
+			bst.right.Insert(value)
+			return
+		}
+	}
+}
+
 func main() {
 	bst := BST{10, nil, nil}
-	fmt.Print(bst)
+	bst.Insert(9)
+	bst.Insert(8)
+	fmt.Print(bst.left)
 }
